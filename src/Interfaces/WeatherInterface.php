@@ -5,6 +5,6 @@ namespace App\Interfaces;
 
 interface WeatherInterface{
 
-    public function getWeatherByName(string $name,int $day):string;
+    public function getWeatherByName(string $name,int $day):array;
 
 }

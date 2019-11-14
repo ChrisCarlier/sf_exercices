@@ -7,9 +7,78 @@
     <h1>Exercice SF4</h1>
 
     <div class="response">
-        {{ response.date }} -
-        {{ response.day_long }} -
-        {{ response.condition }}
+        {% if city.name != null %}
+            <div>
+                <b>Ville : </b>{{ city.name }}
+            </div>
+        {% endif %}
+        {% if city.longitude != null %}
+            <div>
+                <b>Longitude : </b>{{ city.longitude }}
+            </div>
+        {% endif %}
+        {% if city.latitude != null %}
+            <div>
+                <b>Latitude : </b>{{ city.latitude }}
+            </div>
+        {% endif %}
+        {% if city.pression != null %}
+            <div>
+                <b>Pression : </b>{{ city.pression }}
+            </div>
+        {% endif %}
+        {% if city.humidite != null %}
+            <div>
+                <b>Humidité : </b>{{ city.humidite }}
+            </div>
+        {% endif %}
+
+        {% if city.weather != null %}
+            <h2>Météo par jour :</h2>
+            {% for weather in city.weather %}
+
+                {% if weather != null %}
+                    <div class="weather_day">
+                        {% if weather.jour != null %}
+                            <h4>{{ weather.jour }}</h4>
+                        {% endif %}
+                        {% if weather.condition != null %}
+                            <div class="day_info">
+                                <div class="title inline_info">Condition :</div>
+                                <div class="inline_info">{{ weather.condition }}</div>
+                                <div class="inline_info"><img alt={{ weather.condition }}; src={{ weather.icon }} ></div>
+                            </div>
+                        {% endif %}
+                        {% if weather.tmin != null %}
+                            <div class="day_info">
+                                <div class="title inline_info">T° min :</div>
+                                <div class="inline_info">{{ weather.tmin }}</div>
+                            </div>
+                        {% endif %}
+                        {% if weather.tmax != null %}
+                            <div class="day_info">
+                                <div class="title inline_info">T° max :</div>
+                                <div class="inline_info">{{ weather.tmax }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+{#                    {% for hourly in weather.hourly_data %}#}
+{#                        {% if hourly != null %}#}
+{#                            {% if hourly.hour != null %}#}
+{#                                <div class="day_info">#}
+{#                                    <div class="title inline_info">Heure :</div>#}
+{#                                    <div class="inline_info">{{ hourly.hour }}</div>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+
+                {% endif %}
+
+            {% endfor %}
+        {% endif %}
+
     </div>
 
 

@@ -2,9 +2,11 @@
 
 namespace App\Interfaces;
 
+use App\Entity\City;
 
 interface WeatherInterface{
 
-    public function getWeatherByName(string $name,int $day):array;
+    public function getWeatherByName(string $name):array;
+    public function getWeatherCity(array $httpresponse):City;
 
 }

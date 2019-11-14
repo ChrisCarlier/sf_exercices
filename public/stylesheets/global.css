@@ -9,3 +9,28 @@ h1{
 .response{
     color:#e0e0e0;
 }
+
+.weather_day{
+    border : solid #718C00 2px;
+    border-radius: 15px;
+    margin : 10px;
+    padding: 10px;
+}
+
+h4{
+    color:#aacd4e;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.weather_day .title{
+    font-weight: bold;
+}
+
+.weather_day .inline_info{
+    display: inline-block;
+}
+
+.weather_day .day_info{
+    margin-bottom: 2px;
+}

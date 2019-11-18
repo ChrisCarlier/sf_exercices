@@ -32,8 +32,7 @@ class weatherCH implements WeatherInterface
             $response = $client->request('GET', sprintf('https://www.prevision-meteo.ch/services/json/%s', $name));
 //            return $this->getWeatherCity($response->toArray());
 
-            $cityAdapter->convertJsonToCity($response->toArray());
-            return new City();
+            return $cityAdapter->convertJsonToCity($response->toArray());
         } catch (DecodingExceptionInterface | ClientExceptionInterface | RedirectionExceptionInterface | ServerExceptionInterface | TransportExceptionInterface $e) {
             return null;
         }

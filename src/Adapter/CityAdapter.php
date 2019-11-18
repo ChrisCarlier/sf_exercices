@@ -32,8 +32,8 @@ class CityAdapter
         $weather = $serializer->deserialize(json_encode($cityResponse['fcst_day_0']),Weather::class ,'json');
         dump($cityResponse);
         dump($weather);
-
         dump($city);
-        return null;
+
+        return $city;
     }
 }

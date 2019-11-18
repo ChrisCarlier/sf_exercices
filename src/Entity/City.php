@@ -4,13 +4,22 @@
 namespace App\Entity;
 
 
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 class City
 {
     private $longitude;
     private $latitude;
     private $name;
     private $weather;
+    /**
+     * @SerializedName("pressure")
+     */
     private $pression;
+    /**
+     * @SerializedName("humidity")
+     */
+
     private $humidite;
 
     /**

@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Adapter\CityAdapter;
 use App\Entity\City;
 use App\Entity\HourlyWeather;
 use App\Entity\Weather;
@@ -17,36 +18,38 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class weatherCH implements WeatherInterface
 {
+
+
     /**
      * @param string $name
-     * @param int $day
-     * @return array
+     * @return City
      */
-    public function getWeatherByName(string $name): array
+    public function getWeatherByName(string $name): City
     {
-
+        $cityAdapter = new CityAdapter();
         $client = HttpClient::create(['http_version' => '2.0']);
         try {
             $response = $client->request('GET', sprintf('https://www.prevision-meteo.ch/services/json/%s', $name));
+//            return $this->getWeatherCity($response->toArray());
 
-            return $response->toArray();
-//            return $response->toArray()[sprintf("fcst_day_%d", $day)];
+            $cityAdapter->convertJsonToCity($response->toArray());
+            return new City();
         } catch (DecodingExceptionInterface | ClientExceptionInterface | RedirectionExceptionInterface | ServerExceptionInterface | TransportExceptionInterface $e) {
-            return [];
+            return null;
         }
     }
 
-    public function getWeatherCity(array $httpresponse):City
+    public function getWeatherCity(array $httpResponse):City
     {
         $city = new City();
-        $city->setLatitude($httpresponse['city_info']['latitude']);
-        $city->setLongitude($httpresponse['city_info']['longitude']);
-        $city->setName($httpresponse['city_info']['name']);
-        $city->setHumidite($httpresponse['current_condition']['humidity']);
-        $city->setPression($httpresponse['current_condition']['pressure']);
+        $city->setLatitude($httpResponse['city_info']['latitude']);
+        $city->setLongitude($httpResponse['city_info']['longitude']);
+        $city->setName($httpResponse['city_info']['name']);
+        $city->setHumidite($httpResponse['current_condition']['humidity']);
+        $city->setPression($httpResponse['current_condition']['pressure']);
 
         for ($i=0; $i<4; $i++){
-            $result_weather = $httpresponse[sprintf('fcst_day_%d',$i)];
+            $result_weather = $httpResponse[sprintf('fcst_day_%d',$i)];
             $weather = new Weather();
             $weather->setCondition($result_weather['condition']);
             $weather->setJour($result_weather['day_long']);

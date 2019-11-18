@@ -19,11 +19,12 @@ class HomeController extends AbstractController
      * @return Response
      */
     public function index(WeatherInterface $weatherCH){
-        $result = $weatherCH->getWeatherByName('Mons');
+//        $result = $weatherCH->getWeatherByName('Mons');
 
         // Ville
         $city = new City();
-        $city = $weatherCH->getWeatherCity($result);
+//        $city = $weatherCH->getWeatherCity($result);
+        $city = $weatherCH->getWeatherByName('Mons');
 
         return $this->render('pages/home.html.twig',[
             'city' => $city

@@ -9,11 +9,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Weather
 {
 
-    /**
-     * @SerializedName("day_long")
-     */
     private $jour;
-
     private $tmin;
     private $tmax;
     private $condition;

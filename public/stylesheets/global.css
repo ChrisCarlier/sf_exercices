@@ -34,3 +34,16 @@ h4{
 .weather_day .day_info{
     margin-bottom: 2px;
 }
+
+.top-info{
+    min-height: 100px;
+}
+
+.response{
+    min-height: 2000px;
+}
+
+.weather_day{
+    min-height:200px;
+    min-width: 250px;
+}

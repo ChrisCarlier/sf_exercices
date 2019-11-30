@@ -12,14 +12,7 @@ class City
     private $latitude;
     private $name;
     private $weather;
-    /**
-     * @SerializedName("pressure")
-     */
     private $pression;
-    /**
-     * @SerializedName("humidity")
-     */
-
     private $humidite;
 
     /**
